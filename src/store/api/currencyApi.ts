@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
-interface Symbols {
-  success: boolean
-  symbols: { [key: string]: string }
-}
+import {
+  ConvertQuery,
+  ConvertResponse,
+  GetLatestQuery,
+  GetLatestResponse,
+  Symbols,
+} from './types'
 
 export const currencyApi = createApi({
   reducerPath: 'currencyApi',
@@ -17,7 +19,18 @@ export const currencyApi = createApi({
     getAllSymbols: builder.query<Symbols, void>({
       query: () => `symbols`,
     }),
+    convert: builder.query<ConvertResponse, ConvertQuery>({
+      query: ({ from, to, amount }) =>
+        `convert?to=${to}&from=${from}&amount=${amount}`,
+    }),
+    getLatest: builder.query<GetLatestResponse, GetLatestQuery>({
+      query: ({ symbols, base }) => `latest?symbols=${symbols}&base=${base}`,
+    }),
   }),
 })
 
-export const { useGetAllSymbolsQuery } = currencyApi
+export const {
+  useGetAllSymbolsQuery,
+  useGetLatestQuery,
+  useConvertQuery,
+} = currencyApi
