@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, FormEvent } from 'react'
 import { useState } from 'react'
 import { useConvertQuery } from '../../store/api/currencyApi'
 import { ConvertQuery } from '../../store/api/types'
@@ -18,7 +18,8 @@ const Convert = () => {
     setQuery(e.target.value)
   }
 
-  const sendQuery = () => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     const requestData = query.replace(/\s\s+/g, ' ').split(' ')
     console.log(requestData)
     setConvertQuery({
@@ -30,20 +31,31 @@ const Convert = () => {
     setShowResult(true)
   }
 
+  let result
+  if (error) {
+    result = <div className="error">Wrong request, please try again</div>
+  } else if (isLoading) {
+    result = <div className="loading">Loading...</div>
+  } else if (showResult) {
+    result = <div>{`${query}: ${data?.result}`}</div>
+  }
+
   return (
     <div className="convert-block">
       <h3>
         Enter query to conver in format
         <i>'15 usd in rub'</i>
       </h3>
-      <input
-        type="text"
-        name="queryString"
-        value={query}
-        onChange={handleChange}
-      />
-      <button onClick={sendQuery}>Send</button>
-      <div>{showResult && `${query}: ${data?.result}`}</div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="queryString"
+          value={query}
+          onChange={handleChange}
+        />
+        <button type="submit">Send</button>
+      </form>
+      <div>{result}</div>
     </div>
   )
 }

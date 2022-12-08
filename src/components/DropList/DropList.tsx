@@ -10,7 +10,7 @@ interface drpoListPoprs {
 }
 
 const DropList = ({ show, handleClick }: drpoListPoprs) => {
-  const { data, error, isLoading } = useGetAllSymbolsQuery()
+  const { data } = useGetAllSymbolsQuery()
   const dispatch = useAppDispatch()
 
   const classNames = show ? 'drop-list' : 'drop-list hidden'
