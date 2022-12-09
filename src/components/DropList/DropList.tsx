@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {MouseEvent} from 'react'
 import { useGetAllSymbolsQuery } from '../../store/api/currencyApi'
 import { useAppDispatch } from '../../store/hooks'
 import { setBaseCurrency } from '../../store/slices/baseCurrencySlice'
@@ -15,9 +15,12 @@ const DropList = ({ show, handleClick }: drpoListPoprs) => {
 
   const classNames = show ? 'drop-list' : 'drop-list hidden'
 
-  const setAndToggle = (symbol: string) => {
+  const setAndToggle = (e: MouseEvent<HTMLLIElement>) => {
+    const symbol = e.currentTarget.dataset.symbol
     handleClick()
-    dispatch(setBaseCurrency(symbol))
+    if (symbol) {
+      dispatch(setBaseCurrency(symbol))
+    }
   }
 
   return (
@@ -25,7 +28,7 @@ const DropList = ({ show, handleClick }: drpoListPoprs) => {
       {data &&
         Object.keys(data.symbols).map((symbol) => {
           return (
-            <li key={symbol} onClick={(e) => setAndToggle(symbol)}>
+            <li key={symbol} data-symbol={symbol} onClick={setAndToggle}>
               {symbol}
             </li>
           )

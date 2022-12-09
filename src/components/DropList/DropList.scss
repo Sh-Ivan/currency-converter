@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .drop-list {
   display: block;
   box-sizing: border-box;
@@ -20,7 +22,7 @@
     padding: 10px;
 
     &:hover {
-      background-color: aliceblue;
+      background-color: $light-grey-color;
     }
   }
 }

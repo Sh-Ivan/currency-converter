@@ -1,5 +1,7 @@
+@import '../../styles/variables.scss';
+
 .topnav {
-  background-color: rgb(10, 20, 110);
+  background-color: $main-color;
   overflow: hidden;
   height: 90px;
   align-items: center;
@@ -8,25 +10,23 @@
 
   a {
     float: left;
-    color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
     border: none;
     font-size: 1.5rem;
-    background: rgba(242, 247, 254, 0);
     padding: 8px 30px;
     border-radius: 6px;
     transition: background 0.3s ease 0s;
-    color: rgb(255, 255, 255);
+    color: white;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: $hover-color;
     }
 
     &:active {
-      background: rgba(255, 255, 255, 0.2);
+      background: $hover-color;
       color: white;
     }
   }
