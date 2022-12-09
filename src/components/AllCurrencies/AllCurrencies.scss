@@ -1,0 +1,43 @@
+@import '../../styles/variables.scss';
+
+.curr-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.curr-row {
+  display: flex;
+  height: 82px;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  width: 80%;
+  border-radius: 12px;
+  border-bottom: 1px solid $light-grey-color;
+  flex: 1 1 0px;
+
+  &.base {
+    background-color: $main-color;
+    color: white;
+  }
+}
+
+.curr-row__header {
+  font-weight: 700;
+}
+
+.curr-row__cell {
+  padding: 40px;
+  display: flex;
+  flex: 1 1 0px;
+  justify-content: center;
+}
+
+.curr-list-header {
+  font-size: 2.4rem;
+  color: $main-color;
+  text-align: center;
+  margin: 60px 0 0px 0;
+}
